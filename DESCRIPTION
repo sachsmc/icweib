@@ -1,0 +1,13 @@
+Package: straweib
+Type: Package
+Title: Stratified Weibull Regression Model
+Version: 1.1
+Date: 2017-02-17
+Author: Xiangdong Gu and Raji Balasubramanian and Michael C Sachs
+Maintainer: Xiangdong Gu <xdgu@schoolph.umass.edu>
+Description: The main function is icweib, which fits a stratified Weibull proportional hazards model for left censored, right censored, interval censored, and non-censored survival data. We parameterize the Weibull regression model so that it allows a stratum-specific baseline hazard function, but where the effects of other covariates are assumed to be constant across strata. Now allows for optional case weights.
+License: GPL (>= 2)
+Packaged: 2017-02-17 22:04:27 UTC; Sachsmc
+NeedsCompilation: no
+Repository: CRAN
+

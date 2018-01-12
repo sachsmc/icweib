@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "data(tooth24)   ## load data\n## Stratified on dmf, and sex as explanatory variable \nfit <- icweib(L = left, R = right, data = tooth24, strata = dmf, covariates = ~sex)\n\n## weighted\n\ntooth24$wts <- runif(nrow(tooth24))\nfit2 <- icweib(L = left, R = right, data = tooth24, strata = dmf, covariates = ~sex, weights = wts)\n\n## compare to survreg\n\nfit3 <- icweib(L = left, R = right, data = tooth24, strata = dmf, covariates = ~ sex, weights = wts)\nfit3a <- icweib(L = left, R = right, data = tooth24, covariates = ~ sex, weights = wts)\n\ntooth24$right2 <- ifelse(!is.finite(tooth24$right), NA, tooth24$right)\nfit4 <- survreg(Surv(time = left, time2 = right2, type = \"interval2\") ~ sex, weights = tooth24$wts, data = tooth24)\n\nout1<-fit4\nshape1<-1/sum(out1$scale)\nscale1<-exp(sum(out1$coefficients)- out1$coefficients[2])\nscale2<-exp(sum(out1$coefficients))\nH1<-(shape1/scale1)*(168/scale1)^(shape1-1)\nH2<-(shape1/scale2)*(168/scale2)^(shape1-1)\n\nH2 / H1 - exp(fit3a$coef[1]) < 1e-4\n",
+    "created" : 1487319131936.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3842674110",
+    "id" : "2319AD62",
+    "lastKnownWriteTime" : 1487322203,
+    "last_content_update" : 1487322236047,
+    "path" : "G:/STAFF/Michael Sachs/R projects/straweib/tests/weights.R",
+    "project_path" : "tests/weights.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
